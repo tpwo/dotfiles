@@ -1,0 +1,4 @@
+# Turn off flickering / audible bell when command cannot be made e.g.
+# hitting backspace when there is nothing to delete.
+$include /etc/inputrc
+set bell-style none
