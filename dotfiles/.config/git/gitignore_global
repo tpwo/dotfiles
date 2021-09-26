@@ -1,0 +1,7 @@
+*.sw[a-z]
+.DS_Store
+.activate.sh
+.deactivate.sh
+.git
+.idea/
+tags
