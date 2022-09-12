@@ -1,0 +1,35 @@
+#!/usr/bin/python3
+"""Centers the given text with chosen surrounding character.
+
+Length of the output and prefix string is adjustable via parameters.
+"""
+from __future__ import annotations
+import argparse
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('text', nargs='*')
+    parser.add_argument('--prefix', '-p', default='# ')
+    parser.add_argument('--length', '-l', type=int, default=72)
+    parser.add_argument('--character', '-ch', type=str, default='-')
+    args = parser.parse_args(argv)
+
+    if len(args.character) > 1:
+        raise SystemExit(
+            'error: the fill character must be exatly one character long'
+        )
+
+    if args.text == []:
+        output = ''
+    else:
+        output = ' ' + ' '.join(args.text) + ' '
+
+    length = args.length - len(args.prefix)
+    print(args.prefix + output.center(length, args.character))
+
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
