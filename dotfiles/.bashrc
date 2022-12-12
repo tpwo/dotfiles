@@ -435,9 +435,11 @@ fi
 }
 
 if _have pyzet; then
-  pz() { pyzet "$@"; } && export -f pz
+  eval "$(register-python-argcomplete pyzet)"
+
   alias ,pzg='pyzet grep -it'
   ,pzgx() { pyzet grep -it "$@" -- -B 999 -A 999; }
+
   alias ,todo=",pzgx '#todo'"
   alias ,remember=",pzgx '#remember'"
   alias ,diary=",pzgx '#diary'"
