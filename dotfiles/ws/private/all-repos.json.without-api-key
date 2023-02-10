@@ -1,0 +1,17 @@
+{
+    "output_dir": "repos",
+    "all_branches": true,
+    "source": "all_repos.source.github",
+    "source_settings": {
+        "api_key": "PUT YOUR API KEY HERE",
+        "username": "tpwo",
+        "collaborator": true,
+        "private": true,
+        "forks": true,
+        "archived": false
+    },
+    "push": "all_repos.push.merge_to_master",
+    "push_settings": {
+        "fast_forward": true
+    }
+}
