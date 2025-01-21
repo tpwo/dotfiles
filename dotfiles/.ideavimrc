@@ -1,0 +1,19 @@
+set clipboard+=unnamedplus
+
+" Highlight search hits
+set hlsearch
+set ignorecase
+set smartcase
+
+" Leave the default Leader key as \, but alias Space to it. I found an
+" opinion that this prevents some kinds of timeout or delay issues.
+map <SPACE> <Leader>
+
+" With space as leader, when pressed two times, just act as space
+nnoremap <silent> <Leader><Space> <Space>
+
+" Disable search highlighting
+nnoremap <silent> <Leader>l :nohlsearch<CR>
+
+" Make Y consistent with C and D
+nnoremap Y y$
