@@ -1,0 +1,15 @@
+default_session = "Users/tpwo"
+bookmarks = [
+    "/Users/tpwo",
+    "/Users/tpwo/.ssh",
+    "/Users/tpwo/.config/nvim",
+    "/Users/tpwo/notes",
+]
+
+[[search_dirs]]
+path = "/Users/tpwo/ws/private/repos/tpwo"
+depth = 1
+
+[[search_dirs]]
+path = "/Users/tpwo/ws/sandbox"
+depth = 1
