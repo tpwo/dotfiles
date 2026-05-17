@@ -67,14 +67,24 @@ set mouse=a
 " Without it resizing split doesn't work in Windows Terminal
 set ttymouse=sgr
 
-" Save swap files in HOME directory, so they don't appear near the edited file
-" Create the swap directory if it doesn't exist
-let swap_dir = expand('~/.cache/vimswap')
-if !isdirectory(swap_dir)
-  call mkdir(swap_dir, 'p')
-endif
+function! EnsureDir(path)
+  let dir = expand(a:path)
 
-set directory="~/.cache/vimswap//"
+  if !isdirectory(dir)
+    call mkdir(dir, 'p')
+  endif
+
+  return dir
+endfunction
+
+let backup_dir = EnsureDir('~/.vim/backup')
+let swap_dir   = EnsureDir('~/.vim/swap')
+let undo_dir   = EnsureDir('~/.vim/undo')
+
+" Create temp files at $HOME/.vim instead of near edited file.
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
 
 " Edit/Reload vimrc configuration file
 command ConfigEdit :e $MYVIMRC
