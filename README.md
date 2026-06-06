@@ -22,6 +22,7 @@ The core idea is to keep configuration files in a central repository (e.g., `~/w
 - **Sync**: Run `just sync` to create symlinks from the `dotfiles/` directory to your `$HOME`.
 - **Clean**: Run `just clean` to remove the symlinks from `$HOME`.
 - **Help**: Run `just` to see available recipes.
+- **Git Config**: To add machine-specific Git overrides (e.g., disabling GPG signing on a server), create a `~/.gitconfig.local` file. It will be automatically included by `dotfiles/.gitconfig`.
 
 ## Structure
 
