@@ -113,12 +113,6 @@ else
   export OPENER=vi
 fi
 
-# -------------------------------- GPG ---------------------------------
-
-# Turn on GPG password prompt in terminal. Otherwise it cannot show a
-# prompt, and signing fails on some platforms (e.g. WSL)
-GPG_TTY=$(tty)
-export GPG_TTY
 
 # ----------------------------- dircolors ------------------------------
 
