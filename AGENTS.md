@@ -31,7 +31,5 @@ Many custom functions and aliases are prefixed with a comma (`,`) for easy disco
 
 ## Development Conventions
 
-- **Branching**: The `wsl` branch is often the main source of truth, with other platform-specific configurations rebased on top of it.
+- **Branching**: The `main` branch should be the only branch used in the wild
 - **Commit Messages**: Use **Conventional Commits** (`feat:`, `fix:`, `chore:`, etc.).
-- **GPG Signing**: Git commits and tags are configured to be GPG-signed using SSH keys.
-- **Python**: Use type annotations; avoid `typing.Any`.

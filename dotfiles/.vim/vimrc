@@ -59,7 +59,7 @@ set formatoptions+=1 " Don't break a line after a one-letter word
 " Enable mouse (sic!) for very convenient resizing of splits
 set mouse=a
 
-" Without it resizing split doesn't work in Windows Terminal
+" Without it resizing split doesn't work in WSL Terminal
 set ttymouse=sgr
 
 " Save swap files in HOME directory, so they don't appear near the edited file

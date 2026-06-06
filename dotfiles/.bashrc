@@ -6,13 +6,7 @@ esac
 # ------------------------- Platform Detection -------------------------
 
 export PLATFORM
-if [[ "$OSTYPE" == 'msys' ]]; then
-  # $OSTYPE is Bash specific, but doesn't require running anything
-  # https://stackoverflow.com/a/33828925/14458327
-  #
-  # Running Git Bash on Windows
-  PLATFORM=windows
-elif grep -q "microsoft" /proc/version &>/dev/null; then
+if grep -q "microsoft" /proc/version &>/dev/null; then
   # There is no ideal way to detect WSL but this is often used:
   # https://github.com/microsoft/WSL/issues/423
   PLATFORM=wsl
@@ -36,18 +30,6 @@ _get_theme() {
     # - '0x1'* is a partial match, as powershell also returns a newline
     #   along with 1 or 0
     if [[ $(cd $winRoot && /mnt/c/Windows/system32/cmd.exe "$themeCmd" | xargs | awk '{print $NF}') == '0x1'* ]]; then
-      echo light
-    else
-      echo dark
-    fi
-  # For Windows (Git Bash) cmd method doesn't work for some mysteriuos
-  # reason. That's why slower PowerShell method is used.
-  elif [[ "$PLATFORM" == 'windows' ]]; then
-    local winRoot='/c'
-    local themeCmd="(Get-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize').AppsUseLightTheme"
-
-    # Another partial match with * here
-    if [[ $(powershell "$themeCmd") == '1'* ]]; then
       echo light
     else
       echo dark
@@ -216,16 +198,11 @@ fi
 
 # --------------------------- Command Prompt ---------------------------
 
-if [[ "$PLATFORM" == 'windows' ]]; then
-  # High intensity magenta
-  _usercolor='\[\e[95m\]'
-else
-  # High intensity green
-  _usercolor='\[\e[92m\]'
-fi
+# High intensity green
+_usercolor='\[\e[92m\]'
 
 PS1=$WINDOWTITLE                # Set window title
-PS1="$PS1"$_usercolor           # Change color based on $PLATFORM
+PS1="$PS1"$_usercolor           # Set user@host color
 PS1="$PS1"'\u@\h'               # User@host
 PS1="$PS1"'\[\e[00m\]'          # Change to white
 PS1="$PS1"':'                   # Colon
@@ -307,7 +284,7 @@ alias sha='shasum -a 256'
 alias zulu='date -u +%Y%m%d%H%M%S'
 
 # Automatically fix cursor which is broken after quitting nvim.
-# I observed it on Windows and MacOS, and this solution works.
+# I observed it on macOS and WSL, and this solution works.
 alias ,fix-cursor='printf "\e[5 q"'
 export PS1="$(,fix-cursor)$PS1"
 
@@ -322,27 +299,11 @@ alias ,drop-caches='sudo sysctl vm.drop_caches=3'
 alias ,source-bashrc='. ~/.bashrc'
 alias ,.=,source-bashrc
 
-# Not Windows i.e. Unix and WSL
-if [[ "$PLATFORM" != 'windows' ]]; then
-  alias tmux='tmux -u'
-  alias ac='. venv/bin/activate'
+# Unix, macOS and WSL aliases
+alias tmux='tmux -u'
+alias ac='. venv/bin/activate'
 
-  alias up='sudo apt update && sudo apt upgrade -y'
-fi
-
-if [[ "$PLATFORM" == 'windows' ]]; then
-  alias ac='. venv/Scripts/activate'
-
-  alias scp='/c/Windows/System32/OpenSSH/scp.exe'
-  alias sftp='/c/Windows/System32/OpenSSH/sftp.exe'
-  alias ssh='/c/Windows/System32/OpenSSH/ssh.exe'
-  alias ssh-add='/c/Windows/System32/OpenSSH/ssh-add.exe'
-  alias ssh-agent='/c/Windows/System32/OpenSSH/ssh-agent.exe'
-  alias ssh-keygen='/c/Windows/System32/OpenSSH/ssh-keygen.exe'
-  alias ssh-keyscan='/c/Windows/System32/OpenSSH/ssh-keyscan.exe'
-
-  alias exp='explorer.exe .'
-fi
+alias up='sudo apt update && sudo apt upgrade -y'
 
 # WSL only
 if [[ "$PLATFORM" == 'wsl' ]]; then
