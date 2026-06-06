@@ -3,6 +3,10 @@ if has("eval")
   let skip_defaults_vim=1
 endif
 
+set nocompatible
+
+syntax enable
+
 let $RTP=split(&runtimepath, ',')[0]
 let $RC="$HOME/.vim/vimrc"
 
@@ -18,19 +22,14 @@ set tabstop=4      " Set how many columns are used to render a tab
 set shiftwidth=0   " Reuse tabstop value
 set softtabstop=-1 " Reuse shiftwidth value
 
-" Git Bash (Cygwin) specific settings
-" https://vi.stackexchange.com/a/31796/40821
-if has('win32unix')
-  " Save new files with CRLF. Stick to LF if file already uses it.
-  set fileformats=dos,unix
-endif
-
 " Disable automatic folding
 set foldmethod=manual
 set nofoldenable
 
-set number relativenumber
+set number
 set cursorline
+
+set scrolloff=10
 
 " Configure statusline
 " Based on:
@@ -44,13 +43,19 @@ set statusline+=%=                 " Align to right
 set statusline+=\ %y               " File type
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " UTF-8 etc.
 set statusline+=\[%{&fileformat}\] " Unix/DOS line endings
-set statusline+=\ [%{&fo}]         " Formatting options
 set statusline+=\ %4l:%-2c         " Line and column number with padding
 set statusline+=\ %3p              " % of file at cursor with padding
 set statusline+=%%                 " Verbatim '%' sign
 
+" Always display the status line
+set laststatus=2
+
 " Highlight search hits
 set hlsearch
+
+" Highlight as you search
+set incsearch
+
 set ignorecase
 set smartcase
 
@@ -59,7 +64,7 @@ set formatoptions+=1 " Don't break a line after a one-letter word
 " Enable mouse (sic!) for very convenient resizing of splits
 set mouse=a
 
-" Without it resizing split doesn't work in WSL Terminal
+" Without it resizing split doesn't work in Windows Terminal
 set ttymouse=sgr
 
 " Save swap files in HOME directory, so they don't appear near the edited file
@@ -117,113 +122,24 @@ nnoremap Q <nop>
 " Avoid unintentional sending Vim to background
 nnoremap <C-z> <nop>
 
-" Refresh netrw view (as <C-l> is taken by vim-tmux-navigator plugin)
-autocmd FileType netrw nnoremap <buffer> <Leader>f :e.<CR>
-
-" Open netrw in the dir of the current file
-nnoremap <Leader>dd :Lexplore %:p:h<CR>
-" Open netrw in the current working dir
-nnoremap <Leader>da :Lexplore<CR>
-
 " Store relative line number jumps in the jumplist if they exceed
 " a threshold.
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
 
-" Enable true color
-if exists('+termguicolors')
-  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^Eterm'
+  set t_Co=16
 endif
 
 " Disable beep and flash
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-" Useful options toggled with function keys
-map <F1> :set relativenumber!<CR>
-set pastetoggle=<F2>
-map <F3> :set cursorline!<CR>
-map <F4> :set list!<CR>
-
-" Highlight 81th column, so too long lines are easily noticeable
-map <silent> <F5> :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
-
-map <F6> :set spell!<CR>
-
-" Two way clipboard sync under WSL2
-if has('unix') && readfile('/proc/version')[0] =~ 'microsoft'
-  set clipboard=unnamedplus
-endif
-
-" Common Lisp with Slimv
-let g:lisp_rainbow=1
-
-" Tweaks for the integrated file browser
-let g:netrw_banner=0                           " disable annoying banner
-let g:netrw_preview=1                          " prefer v-split over h-split if no prior window
-let g:netrw_altv=1                             " open v-splits to the right
-let g:netrw_liststyle=3                        " tree view by default
-let g:netrw_keepdir=1                          " do not change pwd while browsing folders
-let g:netrw_winsize=20                         " size of opened split window in %
-let g:netrw_localcopydircmd='cp -r'            " fix copying of dirs with content
-let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'   " hide dotfiles, gh to unhide
-
-" CtrlP seems to ignore folders starting from a dot.
-" ':h ctrlp-commands' for more options
-let g:ctrlp_custom_ignore='\v[\/](venv|\.(git|tox|mypy_cache)|.*\.(swp|pyc|egg-info))$'
-let g:ctrlp_show_hidden = 1
-
-" Install vim-plug if not already installed
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl --fail --location --create-dirs --output '.data_dir.'/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-" Only load plugins if vim-plug detected
-if filereadable(expand("~/.vim/autoload/plug.vim"))
-  call plug#begin('~/.vim/plugged')
-  Plug 'tpope/vim-sensible'
-  Plug 'tpope/vim-obsession'
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'kovisoft/slimv'
-  Plug 'tpwo/words-to-avoid.vim'
-  Plug 'morhetz/gruvbox'
-  call plug#end()
-else
-  " Use built-in colorscheme if we cannot use the one from the plugin
-  colorscheme elflord
-endif
-
-" Fix displaying of spelling errors when termguicolors is enabled
-let g:gruvbox_guisp_fallback="bg"
-" Better contrast version
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
-" Without it gruvbox uses light version
-
 if $THEME == 'dark'
   set background=dark
+  colorscheme habamax
 else
   set background=light
+  colorscheme shine
 endif
-
-colorscheme gruvbox
-
-" Empty element is included, so whitespace won't be highlighted if filetype is
-" empty. This prevents displaying whitespace when using pydoc with Vim serving
-" as manpager. I suppose that with pydoc Vim sets filetype to 'man' later than
-" usual, and while the if is evaluated it's still empty.
-let s:ignorelist=['', 'gitcommit']
-if index(s:ignorelist, &filetype) < 0
-  highlight link TrailingWhitespace Error
-  call matchadd('TrailingWhitespace', '\s\+\%#\@<!$')
-endif
-
-" Read personal/private vim configuration (keep last to override)
-set rtp^=~/.vimpersonal
-set rtp^=~/.vimprivate
-set rtp^=~/.vimwork
