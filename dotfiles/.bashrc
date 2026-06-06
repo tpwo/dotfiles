@@ -304,9 +304,6 @@ alias wdiff='git diff --no-index --word-diff'
 alias untar='tar -vxzf'
 alias sha='shasum -a 256'
 
-alias config='echo use ,cfg instead!'
-alias ,cfg='git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME"'
-
 alias zulu='date -u +%Y%m%d%H%M%S'
 
 # Automatically fix cursor which is broken after quitting nvim.

@@ -1,46 +1,30 @@
 # Dotfiles
 
-**For my actual dotfiles check git branches.**
+This repository manages my dotfiles using **GNU Stow**.
 
-My solution uses Git repo which is set directly in the home directory
-which is very simple to setup, and I can easily update the files without
-the need to pull the changes later.
+The core idea is to keep configuration files in a central repository (e.g., `~/ws/dotfiles`) and symlink only the contents of the `dotfiles/` directory to `$HOME`.
 
-I have one main configuration which is based on WSL2 and other
-configurations which are commits added after the newest commit on WSL2
-branch. With each new commit on WSL2 there are many rebases and force
-pushes which I automated a bit.
+## Quick Start
 
-This solution has its issues, but was pretty easy to set up, and that's
-why we're here...
+1. Clone this repository to your preferred location:
+   ```bash
+   git clone https://github.com/tpwo/dotfiles.git ~/ws/private/repos/tpwo/dotfiles
+   cd ~/ws/private/repos/tpwo/dotfiles
+   ```
+2. Ensure you have `stow` and `just` installed.
+3. Deploy the dotfiles:
+   ```bash
+   just sync
+   ```
 
-## Basic config
+## Workflow
 
-*Adopted from the article from [Arch
-Wiki](https://wiki.archlinux.org/index.php/Dotfiles)*
+- **Sync**: Run `just sync` to create symlinks from the `dotfiles/` directory to your `$HOME`.
+- **Clean**: Run `just clean` to remove the symlinks from `$HOME`.
+- **Help**: Run `just` to see available recipes.
 
-By configuring the Git according to the above article it is possible to
-have the home directory in Git with only explicitly added files and
-use alias `,cfg` to perform common Git commands.
+## Structure
 
-Run `setup` to configure it and switch to wsl branch.
-
-The remaining part is adding to your `.bashrc`:
-
-```bash
-alias ,cfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-```
-
-## Windows config
-
-The configuration for Windows is different as setting up a working alias
-requires defining a function inside user's
-`~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1`. Also,
-Powershell doesn't support comma as a prefix, and that's why we use
-`config` instead. Put the following to your PowerShell profile:
-
-```powershell
-function config {
-    git --git-dir=$HOME\.dotfiles\ --work-tree=$HOME $args
-}
-```
+- `dotfiles/`: Contains the actual configuration files (mirrored to `$HOME`).
+- `justfile`: Automation for managing the symlinks.
+- Root level helpers (`README.md`, `LICENSE`, etc.) stay isolated in the repository and do not clutter your `$HOME`.
