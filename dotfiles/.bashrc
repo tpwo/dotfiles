@@ -16,31 +16,6 @@ else
   PLATFORM=unix
 fi
 
-# -------------------------- Theme Detection ---------------------------
-
-export THEME
-_get_theme() {
-  if [[ "$PLATFORM" == 'wsl' ]]; then
-    local winRoot='/mnt/c'
-    local regKey='HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize'
-    local themeCmd="/c reg query $regKey /v AppsUseLightTheme"
-
-    # - xargs is called to strip output from whitespace
-    # - awk is used to select the last column of output
-    # - '0x1'* is a partial match, as powershell also returns a newline
-    #   along with 1 or 0
-    if [[ $(cd $winRoot && /mnt/c/Windows/system32/cmd.exe "$themeCmd" | xargs | awk '{print $NF}') == '0x1'* ]]; then
-      echo light
-    else
-      echo dark
-    fi
-  else  # Always return light on Unix which is good enough for now
-    # This is currently treated as MacOS
-    echo light
-  fi
-}
-THEME=$(_get_theme)
-unset -f _get_theme
 
 # ---------------------- Local Utility Functions -----------------------
 

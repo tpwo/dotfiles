@@ -8,7 +8,7 @@ The core idea is to keep configuration files in a central repository (e.g., `~/w
 
 - `justfile`: Automation for syncing and cleaning symlinks.
 - `dotfiles/`: Contains the actual configuration files that are symlinked to `$HOME`.
-  - `.bashrc`: Core shell configuration with platform detection, theme detection, and many custom utility functions (prefixed with `,`).
+  - `.bashrc`: Core shell configuration with platform detection and many custom utility functions (prefixed with `,`).
   - `.gitconfig`: Global Git configuration with useful aliases (`l`, `lg`, `llg`).
   - `.tmux.conf`, `.vim/vimrc`, `.ideavimrc`: Configurations for terminal multiplexer and editors.
   - `.local/bin/`: Custom scripts and utilities.

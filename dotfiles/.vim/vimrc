@@ -146,10 +146,5 @@ endif
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-if $THEME == 'dark'
-  set background=dark
-  colorscheme habamax
-else
-  set background=light
-  colorscheme shine
-endif
+set background=dark
+colorscheme default
