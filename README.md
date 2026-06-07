@@ -21,8 +21,8 @@ The core idea is to keep configuration files in a central repository (e.g., `~/r
 
 5. Run `git status` to see if any of the files in the repo were affected. They are now reflecting what you had back at your `$HOME`.
 
-   > [!WARNING]
-   > `stow` already symlinked your `$HOME`, so editing files in `dotfiles` folder now affects files at your `$HOME`.
+> [!WARNING]
+> `stow` already symlinked your `$HOME`, so editing files in `dotfiles` folder now affects files at your `$HOME`.
 
 6. Voilà! All files from [dotfiles](dotfiles) folder should now be symlinked into your `$HOME`.
 
