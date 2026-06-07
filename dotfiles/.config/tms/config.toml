@@ -1,9 +1,10 @@
 default_session = "Users/tpwo"
 bookmarks = [
     "/Users/tpwo",
-    "/Users/tpwo/.ssh",
     "/Users/tpwo/.config/nvim",
+    "/Users/tpwo/.ssh",
     "/Users/tpwo/notes",
+    "/Users/tpwo/ws/sandbox",
 ]
 
 [[search_dirs]]
