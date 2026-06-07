@@ -1,31 +1,42 @@
-# Dotfiles
+# My dotfiles
 
-This repository manages my dotfiles using **GNU Stow**.
+This repo manages my dotfiles using **GNU Stow**.
 
-The core idea is to keep configuration files in a central repository (e.g., `~/ws/dotfiles`) and symlink only the contents of the `dotfiles/` directory to `$HOME`.
+The core idea is to keep configuration files in a central repository (e.g., `~/repos/dotfiles`) and symlink only the contents of the [dotfiles](dotfiles) directory to `$HOME`.
 
 ## Quick Start
 
-1. Clone this repository to your preferred location:
+1. Ensure you have `stow` and `just` installed.
+
+2. Clone this repository to your preferred location:
+
    ```bash
    git clone https://github.com/tpwo/dotfiles.git ~/ws/private/repos/tpwo/dotfiles
    cd ~/ws/private/repos/tpwo/dotfiles
    ```
-2. Ensure you have `stow` and `just` installed.
-3. Deploy the dotfiles:
-   ```bash
-   just sync
-   ```
+
+3. Run `just dry-run` to see if stow works correctly and see what will be done.
+
+4. Use `just adopt` to symlink dotfiles stored in this repo while preserving any changes you might have locally.
+
+5. Run `git status` to see if any of the files in the repo were affected. They are now reflecting what you had back at your `$HOME`.
+
+   > [!WARNING]
+   > `stow` already symlinked your `$HOME`, so editing files in `dotfiles` folder now affects files at your `$HOME`.
+
+6. Voilà! All files from [dotfiles](dotfiles) folder should now be symlinked into your `$HOME`.
 
 ## Workflow
 
-- **Sync**: Run `just sync` to create symlinks from the `dotfiles/` directory to your `$HOME`.
-- **Clean**: Run `just clean` to remove the symlinks from `$HOME`.
-- **Help**: Run `just` to see available recipes.
-- **Git Config**: To add machine-specific Git overrides (e.g., disabling GPG signing on a server), create a `~/.gitconfig.local` file. It will be automatically included by `dotfiles/.gitconfig`.
+When you add any new dotfile to this repo, you can sync it with `just sync `.
 
-## Structure
+Get rid of symlinks with `just clean`.
 
-- `dotfiles/`: Contains the actual configuration files (mirrored to `$HOME`).
-- `justfile`: Automation for managing the symlinks.
-- Root level helpers (`README.md`, `LICENSE`, etc.) stay isolated in the repository and do not clutter your `$HOME`.
+> [!IMPORTANT]
+> `just clean` only deletes the symlinks, so you have to manually add your dotfiles back into $HOME.
+
+## Machine-specific overrides
+
+### Git
+
+Create a `~/.gitconfig.local` file. It will be automatically imported by [.gitconfig](dotfiles/.gitconfig) stored in this repo.
