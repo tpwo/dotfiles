@@ -27,6 +27,8 @@
 	prompt = false
 [mergetool "nvim"]
 	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+[checkout]
+	defaultRemote = origin
 [init]
 	defaultBranch = main
 [blame]
@@ -45,6 +47,5 @@
 	format = ssh
 [gpg "ssh"]
 	allowedSignersFile = ~/.config/git/allowed_signers
-
 [include]
 	path = ~/.gitconfig.local
