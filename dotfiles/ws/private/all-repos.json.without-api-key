@@ -1,5 +1,6 @@
 {
     "output_dir": "repos",
+    "exclude": "^tpwo/notes$",
     "all_branches": true,
     "source": "all_repos.source.github",
     "source_settings": {
