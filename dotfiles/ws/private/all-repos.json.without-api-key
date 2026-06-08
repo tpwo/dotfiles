@@ -1,6 +1,6 @@
 {
     "output_dir": "repos",
-    "exclude": "^tpwo/notes$",
+    "exclude": "^tpwo/(notes|nvim-config|tpwo|tpwo\\.github\\.io)$",
     "all_branches": true,
     "source": "all_repos.source.github",
     "source_settings": {
