@@ -20,7 +20,7 @@
 
 ## Rule: Python
 
-- When creating a new func/method, do it below the place where it's called
+- **Define below call site**: new functions/methods go BELOW the first place that calls them, never above
 - Always write code with type annotations and never use `typing.Any` (use `object` & `isinstance` instead)
 - Never add `type: ignore` unless it's an issue with 3rd party code; if type ignoring, always specify why with `type: ignore[reason1,reason2]`
 - Watch deps: when removing an import of another package, check if it's still used, and remove it from deps if not
