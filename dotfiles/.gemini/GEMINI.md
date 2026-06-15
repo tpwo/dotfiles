@@ -12,6 +12,7 @@
 - Always fetch and rebase to the newest main before beginning any new work
 - Always use conventional commits (e.g. `feat:`, `fix:`, `docs:`, `chore:`)
 - Never add anything AI-agent related to commit messages or co-authorship
+- Use infinitive form in commit messages and pull request descriptions (e.g. use `add` or `change` instead of `added` or `changed`)
 - Before pushing bigger changes, run unit tests
 
 ## Rule: ASCII
