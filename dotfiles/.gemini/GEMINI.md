@@ -25,3 +25,4 @@
 - Always write code with type annotations and never use `typing.Any` (use `object` & `isinstance` instead)
 - Never add `type: ignore` unless it's an issue with 3rd party code; if type ignoring, always specify why with `type: ignore[reason1,reason2]`
 - Watch deps: when removing an import of another package, check if it's still used, and remove it from deps if not
+- When adding a new public module, class or function, remember to add a docstring for it. Also add docstrings for more complex private functions etc. For trivial cases docstring can be skipped.
