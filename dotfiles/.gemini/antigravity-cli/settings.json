@@ -1,0 +1,12 @@
+{
+  "colorScheme": "light",
+  "enableTelemetry": false,
+  "permissions": {
+    "allow": [
+      "command(git status)",
+      "command(git fetch)",
+      "command(git diff)"
+    ]
+  },
+  "showFeedbackSurvey": false
+}
