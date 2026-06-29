@@ -53,6 +53,9 @@ export REPOS="$HOME/ws"
 export USER="${USER:-$(whoami)}"
 export GOPATH="$HOME/go"
 
+# Disable homebrew auto-updates
+HOMEBREW_NO_AUTO_UPDATE=1
+
 # -------------------------------- PATH --------------------------------
 
 _homebrew_prefix=/opt/homebrew
