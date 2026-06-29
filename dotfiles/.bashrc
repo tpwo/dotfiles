@@ -402,8 +402,6 @@ if _have ffmpeg; then
   } && export -f ,rotate-video
 fi
 
-cry() { echo ":'("; }
-
 # ------------------------------- Python -------------------------------
 
 if _have aactivator; then
