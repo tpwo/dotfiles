@@ -1,12 +1,27 @@
 {
-  "colorScheme": "light",
-  "enableTelemetry": false,
+  "altScreenMode": "always",
+  "colorScheme": "tokyo night",
   "permissions": {
     "allow": [
-      "command(git status)",
+      "command(cat)",
+      "command(find)",
+      "command(git diff)",
       "command(git fetch)",
-      "command(git diff)"
+      "command(git grep)",
+      "command(git remote)",
+      "command(git status)",
+      "command(ls)"
     ]
   },
-  "showFeedbackSurvey": false
+  "showFeedbackSurvey": false,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.gemini/antigravity-cli/statusline.sh",
+    "enabled": true
+  },
+  "trustedWorkspaces": [
+    "/Users/tpwo/ws/sandbox/ebook-drm",
+    "/Users/tpwo/ws/sandbox/ebook-drm/ebookatty",
+    "/Users/tpwo/ws/sandbox/ebook-drm/DeDRM_tools"
+  ]
 }
