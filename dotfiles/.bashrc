@@ -364,19 +364,6 @@ fi
   set +euxo pipefail
 }
 
-if _have pyzet; then
-  eval "$(register-python-argcomplete pyzet)"
-
-  alias ,pzg='pyzet grep -it'
-  ,pzgx() { pyzet grep -it "$@" -- -B 999 -A 999; }
-
-  alias ,todo=",pzgx '#todo'"
-  alias ,remember=",pzgx '#remember'"
-  alias ,diary=",pzgx '#diary'"
-  alias ,tags='pyzet tags -r | less'
-  alias ,quotes=",pzgx 'Quote: '"
-fi
-
 if _have all-repos-clone; then
   ,all-repos-clone-private() {
     all-repos-clone --jobs 0 --config-filename "$REPOS/private/all-repos.json"
