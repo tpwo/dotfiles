@@ -32,16 +32,7 @@ Available recipes:
     sync    # Sync dotfiles to $HOME
 ```
 
-Many custom functions and bash aliases are prefixed with a comma (`,`) for easy discovery and to avoid name collisions. These are defined in [dotfiles/.bashrc](dotfiles/.bashrc) and include:
-- `,.` / `,source-bashrc`: Reload `~/.bashrc` config.
-- `,l` / `,lm` / `,lt`: Shell listing shortcuts.
-- `,fix-cursor`: Reset terminal cursor style.
-- `,dedup-hist`: Deduplicate shell history.
-- `,pathappend` / `,pathprepend`: Safe PATH manipulation helpers.
-- `,install-just` / `,install-golang` / `,install-nvim`: Shell script installers for development tooling.
-- `,add-last-commit-to-ignore-revs`: Add the last commit SHA to ignore-revs file.
-- `,hd`: Hexdump formatting utility.
-- `,rotate-video`: ffmpeg-based video rotator.
+Many custom functions and bash aliases are prefixed with a comma (`,`) for easy discovery and to avoid name collisions. These are defined in [dotfiles/.bashrc](dotfiles/.bashrc).
 
 ## Development Conventions
 
