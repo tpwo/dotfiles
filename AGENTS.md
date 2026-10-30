@@ -51,6 +51,6 @@ Use [Conventional Commits](https://www.conventionalcommits.org/) formatting:
 - Describe _what_ changed as concisely as possible; fit it in the subject if you can, but feel free to continue concisely in the body if fitting it all in the subject is not possible.
 - Use the body to explain the motivation for the change was made and why the particular approach was chosen; you should include info on the alternatives considered, and why they were not chosen.
 
-## Markdown
+## Markup languages
 
-When writing Markdown, do not hard-wrap long lines.
+When writing Markdown or AsciiDoc, do not hard-wrap long lines.
