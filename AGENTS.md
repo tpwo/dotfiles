@@ -37,20 +37,3 @@ Many custom functions and bash aliases are prefixed with a comma (`,`) for easy 
 ## Development Conventions
 
 - **Branching**: The `main` branch should be the only branch used in the wild
-
-### Commit message format
-
-Use [Conventional Commits](https://www.conventionalcommits.org/) formatting:
-
-- Start the subject line with a type prefix: `docs:`, `fix:`, `chore:`, `test:`, `refactor:`, `feat:`, etc.
-- Optionally scope the prefix (e.g., `refactor(fig):`, `fix(nvim):`); if the changes affect a single aspect, use the aspect name as the scope.
-- The rest of the subject line should start with a verb in the imperative form; ie. "add", "teach", "fix" etc.
-- Keep subject lines under 72 columns.
-- In the commit body, hard-wrap to 80 columns.
-- Use Markdown formatting for _bold_, _italics_, `code`, and fenced code blocks.
-- Describe _what_ changed as concisely as possible; fit it in the subject if you can, but feel free to continue concisely in the body if fitting it all in the subject is not possible.
-- Use the body to explain the motivation for the change was made and why the particular approach was chosen; you should include info on the alternatives considered, and why they were not chosen.
-
-## Markup languages
-
-When writing Markdown or AsciiDoc, do not hard-wrap long lines.

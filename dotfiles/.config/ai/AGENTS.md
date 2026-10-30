@@ -11,10 +11,21 @@ This file presents rules which should be applied *always*. If a prompt is *direc
 ## Git
 
 - Never add anything AI-agent related to commit messages or co-authorship
-- Never do a force push, always pull changes with `--rebase`
+- Never do a `-f` / `--force` push, always pull changes with `--rebase`
 - Always fetch and rebase to the newest main before beginning any new work
-- Always use conventional commits (e.g. `feat:`, `fix:`, `docs:`, `chore:`)
-- Use infinitive form in commit messages and pull request descriptions (e.g. use `add` or `change` instead of `added` or `changed`)
+
+### Commit message format
+
+Use [Conventional Commits](https://www.conventionalcommits.org/) formatting:
+
+- Start the subject line with a type prefix: `docs:`, `fix:`, `chore:`, `test:`, `refactor:`, `feat:`, etc.
+- Optionally scope the prefix (e.g., `refactor(fig):`, `fix(nvim):`); if the changes affect a single aspect, use the aspect name as the scope
+- The rest of the subject line should start with a verb in the imperative form; ie. "add", "teach", "fix" etc.
+- Keep subject lines under 72 columns
+- In the commit body, hard-wrap to 80 columns
+- Use Markdown formatting for **bold**, *italics*, `code`, and fenced code blocks
+- Describe *what* changed as concisely as possible; fit it in the subject if you can, but feel free to continue concisely in the body if fitting it all in the subject is not possible
+- Use the body to explain the motivation for the change was made and why the particular approach was chosen; you should include info on the alternatives considered, and why they were not chosen
 
 ## Python
 
