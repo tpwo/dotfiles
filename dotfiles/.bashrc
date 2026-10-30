@@ -56,6 +56,9 @@ export GOPATH="$HOME/go"
 # Disable homebrew auto-updates
 HOMEBREW_NO_AUTO_UPDATE=1
 
+# Point GitHub Copilot CLI to my unified AGENTS.md instructions file
+export COPILOT_CUSTOM_INSTRUCTIONS_DIRS="$HOME/.config/ai"
+
 # -------------------------------- PATH --------------------------------
 
 _homebrew_prefix=/opt/homebrew
