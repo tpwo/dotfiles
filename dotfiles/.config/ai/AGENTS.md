@@ -10,7 +10,6 @@ This file presents rules which should be applied *always*. If a prompt is *direc
 
 ## Git
 
-- Never add anything AI-agent related to commit messages or co-authorship
 - Never do a `-f` / `--force` push, always pull changes with `--rebase`
 - Always fetch and rebase to the newest main before beginning any new work
 
@@ -18,6 +17,7 @@ This file presents rules which should be applied *always*. If a prompt is *direc
 
 Use [Conventional Commits](https://www.conventionalcommits.org/) formatting:
 
+- Never include `Co-authored-by:` or anything else AI-agent related
 - Start the subject line with a type prefix: `docs:`, `fix:`, `chore:`, `test:`, `refactor:`, `feat:`, etc.
 - Optionally scope the prefix (e.g., `refactor(fig):`, `fix(nvim):`); if the changes affect a single aspect, use the aspect name as the scope
 - The rest of the subject line should start with a verb in the imperative form; ie. "add", "teach", "fix" etc.
