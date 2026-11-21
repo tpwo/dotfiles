@@ -59,6 +59,9 @@ HOMEBREW_NO_AUTO_UPDATE=1
 # Don't upgrade homebrew casks which have `auto_updates true`
 HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1
 
+# Don't print hints about changing brew behaviour with ENV vars
+HOMEBREW_NO_ENV_HINTS=1
+
 # Point GitHub Copilot CLI to my unified AGENTS.md instructions file
 export COPILOT_CUSTOM_INSTRUCTIONS_DIRS="$HOME/.config/ai"
 
