@@ -56,6 +56,9 @@ export GOPATH="$HOME/go"
 # Disable homebrew auto-updates
 HOMEBREW_NO_AUTO_UPDATE=1
 
+# Don't upgrade homebrew casks which have `auto_updates true`
+HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1
+
 # Point GitHub Copilot CLI to my unified AGENTS.md instructions file
 export COPILOT_CUSTOM_INSTRUCTIONS_DIRS="$HOME/.config/ai"
 
